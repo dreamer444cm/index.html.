@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dreamers Worldwide</title>
+<link rel="icon" type="image/png" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -14,9 +15,9 @@
     --veil:#15152b;
     --star:#f7f4ec;
     --muted:#a9a8c4;
-    --glow:#ffd27d;
-    --glow-2:#ff9eb8;
-    --aurora:#7be0c9;
+    --glow:#ff2d9b;
+    --glow-2:#1de9d6;
+    --aurora:#a64dff;
     --line:rgba(247,244,236,.10);
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -32,9 +33,9 @@
   /* ---- starfield background ---- */
   .sky{position:fixed;inset:0;z-index:-2;
     background:
-      radial-gradient(1200px 700px at 80% -10%, rgba(255,158,184,.16), transparent 60%),
-      radial-gradient(1000px 800px at 10% 10%, rgba(123,224,201,.12), transparent 55%),
-      radial-gradient(900px 900px at 50% 120%, rgba(255,210,125,.14), transparent 55%),
+      radial-gradient(1200px 700px at 80% -10%, rgba(255,45,155,.18), transparent 60%),
+      radial-gradient(1000px 800px at 10% 10%, rgba(29,233,214,.14), transparent 55%),
+      radial-gradient(900px 900px at 50% 120%, rgba(166,77,255,.12), transparent 55%),
       linear-gradient(180deg,#07070f,#0a0a14 40%,#0c0b18);
   }
   .stars{position:fixed;inset:0;z-index:-1;opacity:.8;
@@ -87,8 +88,35 @@
   .cta{display:inline-flex;align-items:center;gap:10px;margin-top:34px;
     padding:14px 26px;border-radius:999px;text-decoration:none;font-weight:600;
     color:var(--ink);background:linear-gradient(120deg,var(--glow),var(--glow-2));
-    box-shadow:0 10px 40px rgba(255,158,184,.25);transition:.3s}
-  .cta:hover{transform:translateY(-2px);box-shadow:0 16px 50px rgba(255,158,184,.4)}
+    box-shadow:0 10px 40px rgba(255,45,155,.25);transition:.3s}
+  .cta:hover{transform:translateY(-2px);box-shadow:0 16px 50px rgba(255,45,155,.4)}
+  .logo-wrap{position:relative;display:inline-block;margin-bottom:10px}
+  .logo-wrap::before{content:"";position:absolute;inset:-12% -8%;z-index:-1;
+    background:radial-gradient(closest-side,rgba(255,45,155,.22),rgba(29,233,214,.10),transparent 72%);
+    filter:blur(10px)}
+  .logo{width:min(440px,82vw);height:auto;display:block;
+    filter:drop-shadow(0 14px 50px rgba(255,45,155,.18))}
+  .btn-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+  .cta.ghost{color:var(--star);background:transparent;
+    border:1.5px solid rgba(247,244,236,.28);box-shadow:none}
+  .cta.ghost:hover{border-color:var(--glow);color:var(--glow);box-shadow:none}
+  /* ---- music player ---- */
+  .music-btn{position:fixed;right:18px;bottom:18px;z-index:60;
+    display:inline-flex;align-items:center;gap:10px;cursor:pointer;
+    padding:12px 18px 12px 14px;border-radius:999px;border:none;
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:.9rem;
+    color:var(--ink);background:linear-gradient(120deg,var(--glow),var(--glow-2));
+    box-shadow:0 8px 30px rgba(255,45,155,.35);transition:transform .25s,box-shadow .25s}
+  .music-btn:hover{transform:translateY(-2px);box-shadow:0 12px 38px rgba(255,45,155,.5)}
+  .music-btn .ico{font-size:1rem;line-height:1}
+  .eq{display:none;align-items:flex-end;gap:3px;height:15px}
+  .music-btn.playing .eq{display:inline-flex}
+  .music-btn.playing .label-play{display:none}
+  .eq span{width:3px;background:var(--ink);border-radius:2px;animation:bounce .9s ease-in-out infinite}
+  .eq span:nth-child(2){animation-delay:.15s}
+  .eq span:nth-child(3){animation-delay:.3s}
+  .eq span:nth-child(4){animation-delay:.45s}
+  @keyframes bounce{0%,100%{height:5px}50%{height:15px}}
 
   /* ---- section heads ---- */
   .kicker{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;
@@ -109,8 +137,8 @@
   .item span.txt{font-size:.95rem;color:#e8e6f4}
 
   /* ---- requirement card ---- */
-  .req{background:linear-gradient(150deg,rgba(123,224,201,.10),rgba(255,158,184,.06));
-    border:1px solid rgba(123,224,201,.25);border-radius:22px;padding:34px 30px;margin-top:8px}
+  .req{background:linear-gradient(150deg,rgba(29,233,214,.10),rgba(255,45,155,.06));
+    border:1px solid rgba(29,233,214,.25);border-radius:22px;padding:34px 30px;margin-top:8px}
   .stats{display:flex;gap:18px;flex-wrap:wrap;margin:24px 0}
   .stat{flex:1;min-width:180px;background:rgba(10,10,20,.4);border:1px solid var(--line);
     border-radius:16px;padding:22px}
@@ -158,12 +186,12 @@
 </nav>
 
 <header class="hero wrap">
-  <div class="eyebrow">Komunitas Kreator</div>
-  <h1>Belajar, berkembang,<br>dan <em>meraih sukses</em> bersama.</h1>
+  <span class="logo-wrap"><img class="logo" src="logo.png" alt="Dreamers Worldwide"></span>
   <p class="lede">Dreamers Worldwide berdedikasi untuk membantu para kreator belajar, berkembang, dan meraih kesuksesan dalam lingkungan yang positif dan suportif. Fokus kami adalah pengembangan kreator, edukasi, networking, dan membangun komunitas yang kuat.</p>
-  <a class="cta" href="https://www.tiktok.com/@dreamersworldwide52326?_r=1&amp;_t=ZT-96tS1qM7eQw" target="_blank" rel="noopener">
-    Kunjungi kami di TikTok ↗
-  </a>
+  <div class="btn-row">
+    <a class="cta" href="https://www.tiktok.com/t/ZSxXnBVAs/" target="_blank" rel="noopener">Daftar Sekarang ↗</a>
+    <a class="cta ghost" href="https://www.tiktok.com/@dreamersworldwide52326?_r=1&amp;_t=ZT-96tS1qM7eQw" target="_blank" rel="noopener">Kunjungi TikTok</a>
+  </div>
 </header>
 
 <main>
@@ -250,11 +278,35 @@
   <p style="margin-top:8px"><a href="https://www.tiktok.com/@dreamersworldwide52326?_r=1&amp;_t=ZT-96tS1qM7eQw" target="_blank" rel="noopener">tiktok.com/@dreamersworldwide52326 ↗</a></p>
 </footer>
 
+<audio id="track" src="song.mp3" preload="none"></audio>
+<button class="music-btn" id="musicBtn" aria-label="Putar musik">
+  <span class="ico" id="musicIco">►</span>
+  <span class="label-play">Putar Musik</span>
+  <span class="eq"><span></span><span></span><span></span><span></span></span>
+</button>
+
 <script>
   const io=new IntersectionObserver((entries)=>{
     entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')});
   },{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // ---- music: tap to play, begins at 0:23 ----
+  const track=document.getElementById('track');
+  const btn=document.getElementById('musicBtn');
+  const ico=document.getElementById('musicIco');
+  let started=false;
+  btn.addEventListener('click',()=>{
+    if(track.paused){
+      if(!started){track.currentTime=23;started=true;}
+      track.play();
+    }else{
+      track.pause();
+    }
+  });
+  track.addEventListener('play',()=>{btn.classList.add('playing');ico.textContent='❚❚';});
+  track.addEventListener('pause',()=>{btn.classList.remove('playing');ico.textContent='►';});
+  track.addEventListener('ended',()=>{started=false;});
 </script>
 </body>
 </html>
