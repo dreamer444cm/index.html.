@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dreamers Worldwide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a14;
+    --ink-2:#10101f;
+    --veil:#15152b;
+    --star:#f7f4ec;
+    --muted:#a9a8c4;
+    --glow:#ffd27d;
+    --glow-2:#ff9eb8;
+    --aurora:#7be0c9;
+    --line:rgba(247,244,236,.10);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:90px}
+  body{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    background:var(--ink);
+    color:var(--star);
+    line-height:1.7;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* ---- starfield background ---- */
+  .sky{position:fixed;inset:0;z-index:-2;
+    background:
+      radial-gradient(1200px 700px at 80% -10%, rgba(255,158,184,.16), transparent 60%),
+      radial-gradient(1000px 800px at 10% 10%, rgba(123,224,201,.12), transparent 55%),
+      radial-gradient(900px 900px at 50% 120%, rgba(255,210,125,.14), transparent 55%),
+      linear-gradient(180deg,#07070f,#0a0a14 40%,#0c0b18);
+  }
+  .stars{position:fixed;inset:0;z-index:-1;opacity:.8;
+    background-image:
+      radial-gradient(1.4px 1.4px at 20% 30%, #fff, transparent),
+      radial-gradient(1.2px 1.2px at 70% 20%, #fff, transparent),
+      radial-gradient(1px 1px at 40% 70%, #fff, transparent),
+      radial-gradient(1.6px 1.6px at 85% 60%, #fff, transparent),
+      radial-gradient(1px 1px at 12% 80%, #fff, transparent),
+      radial-gradient(1.2px 1.2px at 60% 85%, #fff, transparent),
+      radial-gradient(1px 1px at 90% 35%, #fff, transparent),
+      radial-gradient(1.4px 1.4px at 33% 12%, #fff, transparent);
+    animation:twinkle 6s ease-in-out infinite alternate;
+  }
+  @keyframes twinkle{from{opacity:.45}to{opacity:.9}}
+
+  /* ---- nav ---- */
+  nav{position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(14px);
+    background:rgba(10,10,20,.55);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{max-width:1100px;margin:0 auto;padding:14px 24px;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .brand{font-family:'Fraunces',serif;font-weight:600;font-size:1.15rem;letter-spacing:.3px;
+    display:flex;align-items:center;gap:9px}
+  .brand .dot{width:9px;height:9px;border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, var(--glow), var(--glow-2));
+    box-shadow:0 0 14px var(--glow)}
+  .nav-links{display:flex;gap:6px;flex-wrap:wrap}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:500;
+    padding:7px 12px;border-radius:999px;transition:.25s;white-space:nowrap}
+  .nav-links a:hover{color:var(--ink);background:var(--glow)}
+
+  /* ---- layout ---- */
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+  section{padding:64px 0;border-bottom:1px solid var(--line)}
+  section:last-of-type{border-bottom:none}
+
+  /* ---- hero ---- */
+  .hero{padding:90px 0 70px;text-align:center}
+  .eyebrow{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--aurora);font-weight:600;margin-bottom:22px}
+  h1{font-family:'Fraunces',serif;font-weight:400;line-height:1.05;
+    font-size:clamp(2.7rem,8vw,5rem);letter-spacing:-.5px}
+  h1 em{font-style:italic;
+    background:linear-gradient(120deg,var(--glow),var(--glow-2),var(--aurora));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{max-width:680px;margin:26px auto 0;color:var(--muted);font-size:1.08rem}
+  .cta{display:inline-flex;align-items:center;gap:10px;margin-top:34px;
+    padding:14px 26px;border-radius:999px;text-decoration:none;font-weight:600;
+    color:var(--ink);background:linear-gradient(120deg,var(--glow),var(--glow-2));
+    box-shadow:0 10px 40px rgba(255,158,184,.25);transition:.3s}
+  .cta:hover{transform:translateY(-2px);box-shadow:0 16px 50px rgba(255,158,184,.4)}
+
+  /* ---- section heads ---- */
+  .kicker{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--glow);font-weight:600;margin-bottom:14px}
+  h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(1.7rem,4vw,2.5rem);
+    line-height:1.12;letter-spacing:-.3px;margin-bottom:20px}
+  p{color:#d7d5e8;font-size:1.02rem;margin-bottom:16px}
+  p:last-child{margin-bottom:0}
+
+  /* ---- pill grid ---- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:8px}
+  .item{display:flex;gap:12px;align-items:flex-start;
+    background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+    border:1px solid var(--line);border-radius:14px;padding:15px 17px;transition:.25s}
+  .item:hover{border-color:rgba(255,210,125,.35);transform:translateY(-2px);
+    background:linear-gradient(180deg,rgba(255,210,125,.07),rgba(255,255,255,.02))}
+  .item .mark{color:var(--glow);font-weight:700;line-height:1.6;flex:none}
+  .item span.txt{font-size:.95rem;color:#e8e6f4}
+
+  /* ---- requirement card ---- */
+  .req{background:linear-gradient(150deg,rgba(123,224,201,.10),rgba(255,158,184,.06));
+    border:1px solid rgba(123,224,201,.25);border-radius:22px;padding:34px 30px;margin-top:8px}
+  .stats{display:flex;gap:18px;flex-wrap:wrap;margin:24px 0}
+  .stat{flex:1;min-width:180px;background:rgba(10,10,20,.4);border:1px solid var(--line);
+    border-radius:16px;padding:22px}
+  .stat .num{font-family:'Fraunces',serif;font-size:2.6rem;line-height:1;
+    background:linear-gradient(120deg,var(--glow),var(--aurora));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .stat .lbl{color:var(--muted);font-size:.85rem;margin-top:8px;display:block}
+
+  .checklist{list-style:none;margin-top:10px}
+  .checklist li{display:flex;gap:12px;align-items:flex-start;padding:9px 0;
+    border-bottom:1px dashed var(--line);font-size:1rem;color:#e8e6f4}
+  .checklist li:last-child{border-bottom:none}
+  .checklist .ck{color:var(--aurora);flex:none;font-weight:700}
+
+  .mission{text-align:center}
+  .mission p{font-family:'Fraunces',serif;font-style:italic;font-weight:300;
+    font-size:clamp(1.3rem,3.5vw,1.9rem);line-height:1.45;color:var(--star);
+    max-width:760px;margin:0 auto}
+
+  footer{padding:50px 24px 70px;text-align:center;color:var(--muted);font-size:.85rem}
+  footer a{color:var(--glow);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(24px);transition:.7s ease}
+  .reveal.show{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<div class="sky"></div>
+<div class="stars"></div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand"><span class="dot"></span> Dreamers Worldwide</div>
+    <div class="nav-links">
+      <a href="#tentang">Tentang</a>
+      <a href="#dukungan">Dukungan</a>
+      <a href="#live">Live Streaming</a>
+      <a href="#tambahan">Tambahan</a>
+      <a href="#visi">Visi & Misi</a>
+      <a href="#persyaratan">Persyaratan</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="eyebrow">Komunitas Kreator</div>
+  <h1>Belajar, berkembang,<br>dan <em>meraih sukses</em> bersama.</h1>
+  <p class="lede">Dreamers Worldwide berdedikasi untuk membantu para kreator belajar, berkembang, dan meraih kesuksesan dalam lingkungan yang positif dan suportif. Fokus kami adalah pengembangan kreator, edukasi, networking, dan membangun komunitas yang kuat.</p>
+  <a class="cta" href="https://www.tiktok.com/@dreamersworldwide52326?_r=1&amp;_t=ZT-96tS1qM7eQw" target="_blank" rel="noopener">
+    Kunjungi kami di TikTok ↗
+  </a>
+</header>
+
+<main>
+  <section id="tentang" class="wrap reveal">
+    <div class="kicker">Tentang Kami</div>
+    <h2>Mendukung setiap langkah perjalanan kreator</h2>
+    <p>Kami memberikan dukungan kepada kreator melalui bimbingan live streaming, strategi pertumbuhan, peluang networking, serta bantuan dalam terhubung dengan kreator lain untuk kolaborasi dan aktivitas PK.</p>
+    <p>Meskipun kami tidak menjamin sponsor, endorsement, atau kerja sama dengan brand, kami membantu kreator membangun kehadiran mereka dan memanfaatkan peluang yang tersedia seiring pertumbuhan mereka.</p>
+  </section>
+
+  <section id="dukungan" class="wrap reveal">
+    <div class="kicker">Dukungan yang Disediakan</div>
+    <h2>Semua yang Anda butuhkan untuk tumbuh</h2>
+    <div class="grid">
+      <div class="item"><span class="mark">✦</span><span class="txt">Bimbingan &amp; Pelatihan Live Streaming</span></div>
+      <div class="item"><span class="mark">✦</span><span class="txt">Strategi Pertumbuhan Kreator</span></div>
+      <div class="item"><span class="mark">✦</span><span class="txt">Penetapan Target &amp; Pemantauan Perkembangan</span></div>
+      <div class="item"><span class="mark">✦</span><span class="txt">Dukungan Komunitas &amp; Networking</span></div>
+      <div class="item"><span class="mark">✦</span><span class="txt">Tips Menjadi Host LIVE yang Efektif</span></div>
+      <div class="item"><span class="mark">✦</span><span class="txt">Panduan Fitur Platform</span></div>
+      <div class="item"><span class="mark">✦</span><span class="txt">Sumber Daya Edukasi</span></div>
+      <div class="item"><span class="mark">✦</span><span class="txt">Pelatihan &amp; Dukungan Interaksi Audiens</span></div>
+      <div class="item"><span class="mark">✦</span><span class="txt">Peluang Kolaborasi Tim</span></div>
+      <div class="item"><span class="mark">✦</span><span class="txt">Mentoring &amp; Dukungan Berkelanjutan</span></div>
+      <div class="item"><span class="mark">✦</span><span class="txt">Lingkungan yang Positif &amp; Suportif</span></div>
+      <div class="item"><span class="mark">✦</span><span class="txt">Terbuka untuk Semua Jenis Kreator dan Semua Tingkat Pengalaman</span></div>
+    </div>
+  </section>
+
+  <section id="live" class="wrap reveal">
+    <div class="kicker">Dukungan Live Streaming Meliputi</div>
+    <h2>Tampil LIVE dengan percaya diri</h2>
+    <div class="grid">
+      <div class="item"><span class="mark">▸</span><span class="txt">Pelatihan dan pembinaan untuk meningkatkan kualitas LIVE</span></div>
+      <div class="item"><span class="mark">▸</span><span class="txt">Ide konten dan strategi interaksi dengan audiens</span></div>
+      <div class="item"><span class="mark">▸</span><span class="txt">Panduan teknis dan bantuan pemecahan masalah</span></div>
+      <div class="item"><span class="mark">▸</span><span class="txt">Pemahaman fitur dan alat yang tersedia di platform</span></div>
+      <div class="item"><span class="mark">▸</span><span class="txt">Strategi pertumbuhan dan pengembangan komunitas</span></div>
+      <div class="item"><span class="mark">▸</span><span class="txt">Dukungan komunitas dan peluang networking</span></div>
+    </div>
+  </section>
+
+  <section id="tambahan" class="wrap reveal">
+    <div class="kicker">Dukungan Tambahan</div>
+    <h2>Bantuan saat Anda paling membutuhkannya</h2>
+    <div class="grid">
+      <div class="item"><span class="mark">✚</span><span class="txt">Bantuan dalam menangani masalah akun LIVE dan ban LIVE jika memungkinkan</span></div>
+      <div class="item"><span class="mark">✚</span><span class="txt">Akses ke komunitas kreator yang suportif dan aktif</span></div>
+      <div class="item"><span class="mark">✚</span><span class="txt">Kesempatan untuk terhubung dengan kreator lain untuk kolaborasi dan aktivitas PK</span></div>
+    </div>
+  </section>
+
+  <section id="visi" class="wrap reveal">
+    <div class="kicker">Visi &amp; Misi</div>
+    <h2>Tumbuh bersama, berdampingan menuju kesuksesan</h2>
+    <p>Seiring pertumbuhan Dreamers Worldwide, kami berencana menghadirkan kampanye kreator, acara komunitas, kompetisi, dan berbagai peluang pengembangan lainnya yang dirancang untuk membantu kreator meningkatkan jangkauan, keterlibatan audiens, dan pertumbuhan mereka.</p>
+    <div class="mission" style="margin-top:34px">
+      <p>“Misi kami sederhana: menciptakan lingkungan yang ramah dan mendukung, tempat para kreator dapat mengembangkan keterampilan, membangun koneksi yang bermakna, dan tumbuh bersama, berdampingan menuju kesuksesan.”</p>
+    </div>
+  </section>
+
+  <section id="persyaratan" class="wrap reveal">
+    <div class="kicker">Persyaratan Aktivitas Bulanan</div>
+    <h2>Komitmen yang fleksibel &amp; sederhana</h2>
+    <div class="req">
+      <p>Kreator diwajibkan menyelesaikan minimal <strong>7 hari aktif</strong> dan <strong>25 jam total aktivitas</strong> setiap bulan.</p>
+      <div class="stats">
+        <div class="stat"><span class="num">7</span><span class="lbl">hari aktif per bulan</span></div>
+        <div class="stat"><span class="num">25</span><span class="lbl">jam total per bulan</span></div>
+      </div>
+      <p>25 jam tersebut tidak harus diselesaikan dalam 7 hari aktif dan dapat dibagi sepanjang bulan sesuai dengan jadwal yang paling nyaman bagi Anda.</p>
+      <p style="margin-top:18px"><strong>Selama Anda menyelesaikan:</strong></p>
+      <ul class="checklist">
+        <li><span class="ck">✓</span> 7 hari aktif per bulan</li>
+        <li><span class="ck">✓</span> 25 jam total per bulan</li>
+      </ul>
+      <p style="margin-top:18px">maka Anda telah memenuhi persyaratan aktivitas bulanan.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>Dreamers Worldwide · Komunitas kreator yang positif &amp; suportif</p>
+  <p style="margin-top:8px"><a href="https://www.tiktok.com/@dreamersworldwide52326?_r=1&amp;_t=ZT-96tS1qM7eQw" target="_blank" rel="noopener">tiktok.com/@dreamersworldwide52326 ↗</a></p>
+</footer>
+
+<script>
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
